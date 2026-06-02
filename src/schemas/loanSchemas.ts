@@ -35,9 +35,9 @@ export const step3Schema = z.object({
   aadhaarNumber: z
     .string()
     .regex(/^\d{12}$/, "Enter valid 12 digit Aadhaar number"),
-  aadhaarConsent: z.literal(true, {
-    message: "Aadhaar consent is required",
-  }),
+ aadhaarConsent: z.boolean().refine((val) => val === true, {
+  message: "Aadhaar consent is required",
+}),
   voterId: z.string().optional(),
   passport: z.string().optional(),
 });

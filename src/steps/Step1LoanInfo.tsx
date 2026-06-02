@@ -17,9 +17,15 @@ export default function Step1LoanInfo() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<Step1FormValues>({
+    } = useForm<Step1FormValues>({
     resolver: zodResolver(step1Schema),
-    defaultValues: formData,
+    defaultValues: {
+      loanType: formData.loanType || "personal",
+      loanAmount: formData.loanAmount || "",
+      loanTenure: formData.loanTenure || "",
+      loanPurpose: formData.loanPurpose || "",
+      referralCode: formData.referralCode || "",
+    },
   });
 
   const selectedLoanType = watch("loanType");
